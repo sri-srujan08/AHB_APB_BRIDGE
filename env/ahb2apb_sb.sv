@@ -15,6 +15,62 @@ class ahb2apb_sb;
 
         int data_verified;
         //event e;
+	
+
+//DEFINING COVERGROUPS
+
+        covergroup ahb_cg;
+
+                size: coverpoint ahb_cov.Hsize{bins ad1[]={[0:2]};}
+                trans: coverpoint ahb_cov.Htrans{bins trans[]={[2:3]};}
+                write: coverpoint ahb_cov.Hwrite;
+
+                address: coverpoint ahb_cov.Haddr{bins first= {[32'h8000_0000:32'h80000_03ff]};
+                                                                                        bins second= {[32'h8400_0000:32'h84000_03ff]};
+                                                                                        bins third= {[32'h8800_0000:32'h88000_03ff]};
+                                                                                        bins fourth= {[32'h8c00_0000:32'h8c000_03ff]};}
+
+
+                data_in: coverpoint ahb_cov.Hwdata{bins low= {[32'h0000_0000:32'h0000_ffff]};
+                                                                                        bins mid1= {[32'h0001_ffff:32'hffff_ffff]};
+                                                                                        bins mid2= {[32'h0100_0000:32'h0fff_ffff]};
+                                                                                        bins high= {[32'h1000_0000:32'hffff_ffff]};}
+
+
+                data_out: coverpoint ahb_cov.Hrdata{bins low= {[32'h0000_0000:32'h0000_ffff]};
+													 bins mid1= {[32'h0001_0000:32'h00ff_ffff]};
+                                                                                        bins mid2= {[32'h0100_0000:32'h0fff_ffff]};
+                                                                                        bins high= {[32'h1000_0000:32'hffff_ffff]};}
+
+
+
+        endgroup
+
+
+        covergroup apb_cg;
+
+
+                address: coverpoint apb_cov.Paddr{bins first= {[32'h8000_0000:32'h80000_03ff]};
+                                                                                        bins second= {[32'h8400_0000:32'h84000_03ff]};
+                                                                                        bins third= {[32'h8800_0000:32'h88000_03ff]};
+                                                                                        bins fourth= {[32'h8c00_0000:32'h8c000_03ff]};}
+
+
+                data_in: coverpoint apb_cov.Pwdata{bins low= {[0:32'h00000_ffff]};
+                                                                                        bins mid1= {[32'h0001_ffff:32'hffff_ffff]};}
+
+
+                data_out: coverpoint apb_cov.Prdata{bins low= {[0:32'h00000_ffff]};
+                                                                                        bins mid1= {[32'h0001_ffff:32'hffff_ffff]};}
+
+
+                Write:    coverpoint apb_cov.Pwrite;
+
+                Sel: coverpoint apb_cov.Pselx{bins first={4'b0001};
+                                                                                bins second={4'b0010};
+                                                                                bins third={4'b0100};
+                                                                                bins fourth={4'b1000};}
+        endgroup
 //CREATING CONSTRUCTOR
 
         function new(mailbox#(ahb_trans) ahb_mon2sb,
