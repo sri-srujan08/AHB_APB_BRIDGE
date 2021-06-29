@@ -38,6 +38,29 @@ class test;
         env_h.build();
         env_h.run();
         end
+	
+	
+        if($test$plusargs("TEST2"))
+        begin
+        $display("build and run task");
+        no_of_transactions = 15;
+        env_h.build();
+        //child_trans child=new();
+        env_h.gen_h.rand_data=child;
+        env_h.run();
+        end
+
+
+         if($test$plusargs("TEST3"))
+        begin
+        $display("build and run task");
+        no_of_transactions = 15;
+        env_h.build();
+        //child_trans child=new();
+        env_h.gen_h.rand_data=child1;
+        env_h.run();
+        end
+
 		endtask
 
 endclass
