@@ -1,4 +1,4 @@
-# Makefile for Memory - Regression Testing - Lab10
+
 RTL= ../rtl/*.v +define+WRAPPING_INCR
 work= work #library name
 SVTB1=  ../test/top.sv
