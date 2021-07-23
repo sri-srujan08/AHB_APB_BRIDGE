@@ -4,8 +4,8 @@ class ahb2apb_sb;
 
 //CREATING TRANSACTION HANDLES
 
-        ahb_trans ahb_mon_data, ahb_mon_data1, q[$];
-        apb_trans apb_mon_data;
+        ahb_trans ahb_mon_data, ahb_mon_data1, ahb_cov, q[$];
+        apb_trans apb_mon_data, apb_cov;
 
 //CREATING MAILBOXES
 
